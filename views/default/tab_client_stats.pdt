@@ -1,0 +1,58 @@
+	
+	<h4><?php $this->_("Vesta.tab_stats");?></h4>
+	<div class="table-responsive">
+		<table class="table table-curved table-striped">
+			<thead>
+				<tr>
+					<th style="width: 50%;"><?php $this->_("Vesta.tab_stats.info_heading.field");?></th>
+					<th><?php $this->_("Vesta.tab_stats.info_heading.value");?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.WEB_DOMAINS");?></td>
+					<td><?php $this->Html->_($stats["U_WEB_DOMAINS"]);?> / <?php $this->Html->_($stats["WEB_DOMAINS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.WEB_ALIASES");?></td>
+					<td><?php $this->Html->_($stats["U_WEB_ALIASES"]);?> / <?php $this->Html->_($stats["WEB_ALIASES"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.DNS_DOMAINS");?></td>
+					<td><?php $this->Html->_($stats["U_DNS_DOMAINS"]);?> / <?php $this->Html->_($stats["DNS_DOMAINS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.DNS_RECORDS");?></td>
+					<td><?php $this->Html->_($stats["U_DNS_RECORDS"]);?> / <?php $this->Html->_($stats["DNS_RECORDS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.MAIL_DOMAINS");?></td>
+					<td><?php $this->Html->_($stats["U_MAIL_DOMAINS"]);?> / <?php $this->Html->_($stats["MAIL_DOMAINS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.MAIL_ACCOUNTS");?></td>
+					<td><?php $this->Html->_($stats["U_MAIL_ACCOUNTS"]);?> / <?php $this->Html->_($stats["MAIL_ACCOUNTS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.DATABASES");?></td>
+					<td><?php $this->Html->_($stats["U_DATABASES"]);?> / <?php $this->Html->_($stats["DATABASES"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.CRON_JOBS");?></td>
+					<td><?php $this->Html->_($stats["U_CRON_JOBS"]);?> / <?php $this->Html->_($stats["CRON_JOBS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.BACKUPS");?></td>
+					<td><?php $this->Html->_($stats["U_BACKUPS"]);?> / <?php $this->Html->_($stats["BACKUPS"]);?></td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.DISK_QUOTA");?></td>
+					<td><?php $this->Html->_($stats["U_DISK"]);?> / <?php $this->Html->_($stats["DISK_QUOTA"]);?> MB</td>
+				</tr>
+				<tr>
+					<td><?php $this->_("Vesta.tab_stats.info.BANDWIDTH");?></td>
+					<td><?php $this->Html->_($stats["U_BANDWIDTH"]);?> / <?php $this->Html->_($stats["BANDWIDTH"]);?> MB</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
