@@ -15,7 +15,7 @@ class Vesta extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.1.0';
+    private static $version = '1.2.0';
     /**
      * @var string The authors of this module
      */
@@ -428,6 +428,8 @@ class Vesta extends Module
 
         // Validate module row
         if ($this->Input->validates($vars)) {
+            $vars['host_name'] = strtolower($vars['host_name']);
+
             // Build the meta data for this row
             $meta = [];
             foreach ($vars as $key => $value) {
@@ -470,6 +472,8 @@ class Vesta extends Module
 
         // Validate module row
         if ($this->Input->validates($vars)) {
+            $vars['host_name'] = strtolower($vars['host_name']);
+
             // Build the meta data for this row
             $meta = [];
             foreach ($vars as $key => $value) {
@@ -1410,7 +1414,7 @@ class Vesta extends Module
 
         return $this->Input->matches(
             $host_name,
-            '/^([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))+$/'
+            '/^([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))+$/i'
         );
     }
 
