@@ -15,7 +15,7 @@ class Vesta extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.3.0';
+    private static $version = '1.4.0';
     /**
      * @var string The authors of this module
      */
@@ -1463,6 +1463,37 @@ class Vesta extends Module
         }
 
         $username = substr($username, 0, min($length, 8));
+
+        // Check for an existing user account
+        $row = $this->getModuleRow();
+
+        $vesta = null;
+        if ($row) {
+            $vesta = $this->getApi(
+                $row->meta->host_name,
+                $row->meta->user_name,
+                $row->meta->port,
+                $row->meta->password,
+                $row->meta->use_ssl
+            );
+        }
+
+        $account_matching_characters = 1;
+        $user = $vesta->getAccountsUsage($username);
+
+        // Username exists, create another instead
+        if (isset($user['status']) && $user['status']) {
+            for ($i = 0; $i < (int) str_repeat(9, $account_matching_characters); $i++) {
+                $new_username = substr($username, 0, -strlen($i)) . $i;
+
+                $user = $vesta->getAccountsUsage($new_username);
+                if (isset($user['status']) && $user['status']) {
+                    $username = $new_username;
+                    break;
+                }
+            }
+        }
+
         return $username;
     }
 
