@@ -4,6 +4,7 @@
  */
 // Basics
 $lang['Vesta.name'] = "Vesta";
+$lang['Vesta.description'] = "";
 $lang['Vesta.module_row'] = "Server";
 $lang['Vesta.module_row_plural'] = "Servers";
 $lang['Vesta.module_group'] = "Server Group";
