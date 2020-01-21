@@ -4,6 +4,7 @@
  */
 // Basics
 $lang['Vesta.name'] = "Vesta";
+$lang['Vesta.description'] = "Vesta, or VestaCP, is an open-source web control panel that is considered to be a great alternative to cPanel. Not only does its security and frequent updates match in quality with that of cPanel, it's also completely free.";
 $lang['Vesta.module_row'] = "Server";
 $lang['Vesta.module_row_plural'] = "Servers";
 $lang['Vesta.module_group'] = "Server Group";
