@@ -1154,8 +1154,8 @@ class Vesta extends Module
         if (!empty($post['password']) && !empty($post['confirm_password'])) {
             Loader::loadModels($this, ['Services']);
             $data = [
-                'password' => $this->Html->ifSet($post['password']),
-                'confirm_password' => $this->Html->ifSet($post['confirm_password'])
+                'password' => (isset($post['password']) ? $post['password'] : null),
+                'confirm_password' => (isset($post['confirm_password']) ? $post['confirm_password'] : null)
             ];
             $this->Services->edit($service->id, $data);
 

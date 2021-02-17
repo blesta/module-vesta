@@ -17,9 +17,9 @@
 				if(isset($module_row->meta->use_ssl) && $module_row->meta->use_ssl == "true"){
 				$http = "https://";
 				}
-				$this->Form->create($this->Html->safe($http . $this->Html->ifSet($module_row->meta->host_name) . ":".$this->Html->ifSet($module_row->meta->port)."/login/"), array('target' => "_blank"));
-				$this->Form->fieldHidden("user", $this->Html->ifSet($service_fields->username));
-				$this->Form->fieldHidden("password", $this->Html->ifSet($service_fields->password));
+				$this->Form->create($this->Html->safe($http . (isset($module_row->meta->host_name) ? $module_row->meta->host_name : null) . ":".(isset($module_row->meta->port) ? $module_row->meta->port : null)."/login/"), array('target' => "_blank"));
+				$this->Form->fieldHidden("user", (isset($service_fields->username) ? $service_fields->username : null));
+				$this->Form->fieldHidden("password", (isset($service_fields->password) ? $service_fields->password : null));
 				?>
 				<a id="_login<?php $this->Html->_($service->id);?>" href="#"><?php $this->_("Vesta.service_info.option_login");?></a>
 				<?php
