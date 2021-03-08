@@ -138,7 +138,10 @@ class Vesta extends Module
         $hostname->attach(
             $fields->fieldText(
                 'meta[package_name]',
-                $this->Html->ifSet($vars->meta['package_name'], $this->Html->ifSet($vars->meta['package_name'])),
+                (isset($vars->meta['package_name'])
+                    ? $vars->meta['package_name']
+                    : (isset($vars->meta['package_name']) ? $vars->meta['package_name'] : null)
+                ),
                 ['id' => 'package_name']
             )
         );
@@ -419,7 +422,7 @@ class Vesta extends Module
         $domain->attach(
             $fields->fieldText(
                 'domain',
-                $this->Html->ifSet($vars->domain, $this->Html->ifSet($vars->domain)),
+                (isset($vars->domain) ? $vars->domain : ($vars->domain ?? null)),
                 ['id' => 'domain']
             )
         );
@@ -446,7 +449,7 @@ class Vesta extends Module
         $domain->attach(
             $fields->fieldText(
                 'domain',
-                $this->Html->ifSet($vars->domain, $this->Html->ifSet($vars->domain)),
+                (isset($vars->domain) ? $vars->domain : ($vars->domain ?? null)),
                 ['id' => 'domain']
             )
         );
@@ -473,7 +476,7 @@ class Vesta extends Module
         $domain->attach(
             $fields->fieldText(
                 'domain',
-                $this->Html->ifSet($vars->domain, $this->Html->ifSet($vars->domain)),
+                (isset($vars->domain) ? $vars->domain : ($vars->domain ?? null)),
                 ['id' => 'domain']
             )
         );
@@ -485,7 +488,7 @@ class Vesta extends Module
         $username->attach(
             $fields->fieldText(
                 'username',
-                $this->Html->ifSet($vars->username, $this->Html->ifSet($vars->username)),
+                (isset($vars->username) ? $vars->username : ($vars->username ?? null)),
                 ['id' => 'username']
             )
         );
