@@ -1343,12 +1343,12 @@ class Vesta extends Module
         $user = $vesta->getAccountsUsage($username);
 
         // Username exists, create another instead
-        if (isset($user['status']) && $user['status']) {
+        if (isset($user['status']) && $user['status'] == 'true') {
             for ($i = 0; $i < (int) str_repeat(9, $account_matching_characters); $i++) {
                 $new_username = substr($username, 0, -strlen($i)) . $i;
 
                 $user = $vesta->getAccountsUsage($new_username);
-                if (isset($user['status']) && $user['status']) {
+                if (isset($user['status']) && $user['status'] == 'false') {
                     $username = $new_username;
                     break;
                 }
