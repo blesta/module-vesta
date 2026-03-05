@@ -12,6 +12,7 @@ $lang['Vesta.tab_stats'] = "Statistics";
 $lang['Vesta.tab_client_actions'] = "Actions";
 $lang['Vesta.submit'] = "Submit";
 
+$lang['Vesta.back_to_manage'] = 'Back';
 
 $lang['Vesta.tab_stats.info.WEB_DOMAINS'] = "Domains";
 $lang['Vesta.tab_stats.info.WEB_ALIASES'] = "Aliases";

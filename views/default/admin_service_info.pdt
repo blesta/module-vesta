@@ -1,18 +1,24 @@
-	<table class="table">
-		<tr class="heading_row">
-			<td class="fixed_small center border_none"><span class="paymnt_arrow"></span></td>
-					<td class="border_left"><?php $this->_("Vesta.service_info.hostname");?></td>
-					<td><?php $this->_("Vesta.service_info.username");?></td>
-					<td><?php $this->_("Vesta.service_info.password");?></td>
-					<td class="last"><?php $this->_("Vesta.service_info.options");?></td>
-		</tr>
-		<tr>
-			<td></td>
-					<td><?php echo (isset($service_fields->domain) ? $this->Html->safe($service_fields->domain) : null);?></td>
-					<td><?php echo (isset($service_fields->username) ? $this->Html->safe($service_fields->username) : null);?></td>
-					<td><?php echo (isset($service_fields->password) ? $this->Html->safe($service_fields->password) : null);?></td>
-						<td>
-				<?php
+<?php /** @var View $this **/ ?>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><span class="paymnt_arrow"></span></th>
+            <th><?php $this->_("Vesta.service_info.hostname");?></th>
+            <th><?php $this->_("Vesta.service_info.username");?></th>
+            <th><?php $this->_("Vesta.service_info.password");?></th>
+            <th><?php $this->_("Vesta.service_info.options");?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td><?php echo (isset($service_fields->domain) ? $this->Html->safe($service_fields->domain) : null);?></td>
+            <td><?php echo (isset($service_fields->username) ? $this->Html->safe($service_fields->username) : null);?></td>
+            <td><?php echo (isset($service_fields->password) ? $this->Html->safe($service_fields->password) : null);?></td>
+            <td>
+                <?php
+
 				$http = "http://";
 				if(isset($module_row->meta->use_ssl) && $module_row->meta->use_ssl == "true"){
 				$http = "https://";
@@ -21,19 +27,20 @@
 				$this->Form->fieldHidden("user", (isset($service_fields->username) ? $service_fields->username : null));
 				$this->Form->fieldHidden("password", (isset($service_fields->password) ? $service_fields->password : null));
 				?>
-				<a id="_login<?php echo (isset($service->id) ? $this->Html->safe($service->id) : null);?>" href="#"><?php $this->_("Vesta.service_info.option_login");?></a>
-				<?php
+                <a id="_login<?php echo (isset($service->id) ? $this->Html->safe($service->id) : null);?>" href="#"><?php $this->_("Vesta.service_info.option_login");?></a>
+                <?php
 				$this->Form->end();
 				?>
-			</td>
-		</tr>
-	</table>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#_login<?php echo (isset($service->id) ? $this->Html->safe($service->id) : null);?>').click(function(e) {
-				e.preventDefault();
-				
-				$(this).closest('form').submit();
-			});
-		});
-	</script>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('_login<?php echo (isset($service->id) ? $this->Html->safe($service->id) : null);?>').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            this.closest('form').submit();
+        });
+    });
+</script>

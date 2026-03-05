@@ -136,11 +136,7 @@ class VestaApi
      */
     public function sshAccess($username, $action = 'enable')
     {
-        if ($action == 'enable') {
-            $action = 'bash';
-        } else {
-            $action = 'nologin';
-        }
+        $action = $action == 'enable' ? 'bash' : 'nologin';
         $params = [
             'arg1' => $username,
             'arg2' => $action,
