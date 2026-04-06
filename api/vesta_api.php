@@ -55,11 +55,10 @@ class VestaApi
         $url .= $this->host_name . ':' . $this->port . '/api/';
 
 
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept: application/json', ' Accept-Charset: UTF-8']);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Expect:', 'Accept-Charset: UTF-8']);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept: application/json', 'Accept-Charset: UTF-8', 'Expect:', 'Content-Type: application/x-www-form-urlencoded']);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);

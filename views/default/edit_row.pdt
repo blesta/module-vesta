@@ -9,11 +9,12 @@ $this->Widget->setLinkButtons([
         'attributes' => ['href' => $this->base_uri . 'settings/company/modules/manage/' . $module->id],
     ],
 ]);
-$this->Widget->create($this->_('Vesta.edit_row.box_title', true));
-
-$this->Form->create(null, ['class' => 'disable-on-submit']);
-$this->Form->fieldHidden('account_count', $vars->account_count ?? 0);
 ?>
+
+<?php $this->Form->create(null, ['class' => 'disable-on-submit']); ?>
+<?php $this->Form->fieldHidden('account_count', $vars->account_count ?? 0); ?>
+
+<?php $this->Widget->create($this->_('Vesta.edit_row.box_title', true)); ?>
 
 <h6 class="form-section-header"><?php $this->_('Vesta.edit_row.basic_title'); ?></h6>
 
@@ -70,7 +71,7 @@ $this->Form->fieldHidden('account_count', $vars->account_count ?? 0);
     <label for="password" class="form-label">
         <?php $this->_('Vesta.row_meta.password'); ?>
     </label>
-    <?php $this->Form->fieldPassword('password', $vars->password ?? null, [
+    <?php $this->Form->fieldPassword('password', [
         'id' => 'password',
         'class' => 'form-control',
     ]); ?>
@@ -81,9 +82,6 @@ $this->Form->fieldHidden('account_count', $vars->account_count ?? 0);
     <a class="btn btn-primary submit" href="#"><?php $this->_('Vesta.edit_row.add_btn'); ?></a>
 </div>
 
-<?php
-$this->Form->end();
-$this->Widget->end();
+<?php $this->Widget->end(); ?>
 
-
-?>
+<?php $this->Form->end(); ?>

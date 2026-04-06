@@ -674,11 +674,17 @@ class Vesta extends Module
             );
 
             // First create a user account
+            $this->log(
+                $row->meta->host_name . '|v-add-user',
+                json_encode($params),
+                'input',
+                true
+            );
             $account_response = $vesta->createUserAccount($params);
             $this->log(
                 $row->meta->host_name . '|v-add-user',
-                serialize($account_response),
-                'input',
+                json_encode($account_response),
+                'output',
                 $account_response['status']
             );
 
@@ -696,6 +702,12 @@ class Vesta extends Module
                     $row->meta->host_name . '|v-add-domain',
                     serialize($domain_response),
                     'input',
+                    $domain_response['status']
+                );
+                $this->log(
+                    $row->meta->host_name . '|v-add-domain',
+                    serialize($domain_response),
+                    'output',
                     $domain_response['status']
                 );
 
@@ -716,6 +728,12 @@ class Vesta extends Module
                         $row->meta->host_name . '|v-change-user-shell',
                         serialize($ssh_response),
                         'input',
+                        $ssh_response['status']
+                    );
+                    $this->log(
+                        $row->meta->host_name . '|v-change-user-shell',
+                        serialize($ssh_response),
+                        'output',
                         $ssh_response['status']
                     );
 
