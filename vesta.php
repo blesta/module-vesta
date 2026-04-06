@@ -1,4 +1,5 @@
 <?php
+
 use Blesta\Core\Util\Validate\Server;
 
 /**
@@ -138,9 +139,7 @@ class Vesta extends Module
         $hostname->attach(
             $fields->fieldText(
                 'meta[package_name]',
-                (isset($vars->meta['package_name'])
-                    ? $vars->meta['package_name']
-                    : (isset($vars->meta['package_name']) ? $vars->meta['package_name'] : null)
+                ($vars->meta['package_name'] ?? ($vars->meta['package_name'] ?? null)
                 ),
                 ['id' => 'package_name']
             )
@@ -270,6 +269,14 @@ class Vesta extends Module
             }
         }
 
+        // Fetch module
+        Loader::loadModels($this, ['ModuleManager']);
+        $module = $this->ModuleManager->getByClass(
+            \Illuminate\Support\Str::snake(get_class($this)),
+            Configure::get('Blesta.company_id')
+        );
+        $module = ($module[0] ?? []);
+        $this->view->set('module', (object) $module);
         $this->view->set('vars', (object)$vars);
         return $this->view->fetch();
     }
@@ -302,6 +309,14 @@ class Vesta extends Module
             }
         }
 
+        // Fetch module
+        Loader::loadModels($this, ['ModuleManager']);
+        $module = $this->ModuleManager->getByClass(
+            \Illuminate\Support\Str::snake(get_class($this)),
+            Configure::get('Blesta.company_id')
+        );
+        $module = ($module[0] ?? []);
+        $this->view->set('module', (object) $module);
         $this->view->set('vars', (object)$vars);
         return $this->view->fetch();
     }
@@ -401,7 +416,6 @@ class Vesta extends Module
      */
     public function deleteModuleRow($module_row)
     {
-
     }
 
     /**
@@ -422,7 +436,7 @@ class Vesta extends Module
         $domain->attach(
             $fields->fieldText(
                 'domain',
-                (isset($vars->domain) ? $vars->domain : ($vars->domain ?? null)),
+                ($vars->domain ?? ($vars->domain ?? null)),
                 ['id' => 'domain']
             )
         );
@@ -449,7 +463,7 @@ class Vesta extends Module
         $domain->attach(
             $fields->fieldText(
                 'domain',
-                (isset($vars->domain) ? $vars->domain : ($vars->domain ?? null)),
+                ($vars->domain ?? ($vars->domain ?? null)),
                 ['id' => 'domain']
             )
         );
@@ -476,7 +490,7 @@ class Vesta extends Module
         $domain->attach(
             $fields->fieldText(
                 'domain',
-                (isset($vars->domain) ? $vars->domain : ($vars->domain ?? null)),
+                ($vars->domain ?? ($vars->domain ?? null)),
                 ['id' => 'domain']
             )
         );
@@ -488,7 +502,7 @@ class Vesta extends Module
         $username->attach(
             $fields->fieldText(
                 'username',
-                (isset($vars->username) ? $vars->username : ($vars->username ?? null)),
+                ($vars->username ?? ($vars->username ?? null)),
                 ['id' => 'username']
             )
         );
@@ -640,9 +654,7 @@ class Vesta extends Module
         $params['password'] = $this->generatePassword(10, 14);
         $params['domain'] = $vars['domain'];
         $params['username'] = $this->generateUsername($vars['domain']);
-        $params['ssh_access'] = isset($vars['configoptions']['ssh_access'])
-            ? $vars['configoptions']['ssh_access']
-            : 'disable';
+        $params['ssh_access'] = $vars['configoptions']['ssh_access'] ?? 'disable';
 
         $this->validateService($package, $params);
 
@@ -662,11 +674,17 @@ class Vesta extends Module
             );
 
             // First create a user account
+            $this->log(
+                $row->meta->host_name . '|v-add-user',
+                json_encode($params),
+                'input',
+                true
+            );
             $account_response = $vesta->createUserAccount($params);
             $this->log(
                 $row->meta->host_name . '|v-add-user',
-                serialize($account_response),
-                'input',
+                json_encode($account_response),
+                'output',
                 $account_response['status']
             );
 
@@ -684,6 +702,12 @@ class Vesta extends Module
                     $row->meta->host_name . '|v-add-domain',
                     serialize($domain_response),
                     'input',
+                    $domain_response['status']
+                );
+                $this->log(
+                    $row->meta->host_name . '|v-add-domain',
+                    serialize($domain_response),
+                    'output',
                     $domain_response['status']
                 );
 
@@ -704,6 +728,12 @@ class Vesta extends Module
                         $row->meta->host_name . '|v-change-user-shell',
                         serialize($ssh_response),
                         'input',
+                        $ssh_response['status']
+                    );
+                    $this->log(
+                        $row->meta->host_name . '|v-change-user-shell',
+                        serialize($ssh_response),
+                        'output',
                         $ssh_response['status']
                     );
 
@@ -829,12 +859,13 @@ class Vesta extends Module
             // If the ssh access option is unchecked and the service already has the ssh access enabled then
             // disable the ssh access, but if the ssh access option is checked
             // and the service did not have the ssh access before then enable.
-            if ((!isset($vars['configoptions']['ssh_access']) && $service_ssh_access == 'enable')
+            if (
+                (!isset($vars['configoptions']['ssh_access']) && $service_ssh_access == 'enable')
                 || (isset($vars['configoptions']['ssh_access']) && $service_ssh_access == '')
             ) {
                 $ssh_response = $vesta->sshAccess(
                     $vars['username'],
-                    isset($vars['configoptions']['ssh_access']) ? $vars['configoptions']['ssh_access'] : 'disable'
+                    $vars['configoptions']['ssh_access'] ?? 'disable'
                 );
                 $this->log(
                     $row->meta->host_name . '|v-change-user-shell',
@@ -1157,8 +1188,8 @@ class Vesta extends Module
         if (!empty($post['password']) && !empty($post['confirm_password'])) {
             Loader::loadModels($this, ['Services']);
             $data = [
-                'password' => (isset($post['password']) ? $post['password'] : null),
-                'confirm_password' => (isset($post['confirm_password']) ? $post['confirm_password'] : null)
+                'password' => ($post['password'] ?? null),
+                'confirm_password' => ($post['confirm_password'] ?? null)
             ];
             $this->Services->edit($service->id, $data);
 
@@ -1171,7 +1202,7 @@ class Vesta extends Module
 
         $this->view->set('service_fields', $service_fields);
         $this->view->set('service_id', $service->id);
-        $this->view->set('vars', (isset($vars) ? $vars : new stdClass()));
+        $this->view->set('vars', ($vars ?? new stdClass()));
 
         $this->view->setDefaultView('components' . DS . 'modules' . DS . 'vesta' . DS);
         return $this->view->fetch();
@@ -1212,7 +1243,7 @@ class Vesta extends Module
 
         $this->view->set(
             'stats',
-            isset($response[$service_fields->username]) ? $response[$service_fields->username] : null
+            $response[$service_fields->username] ?? null
         );
         $this->view->set('service_fields', $service_fields);
 
@@ -1256,7 +1287,7 @@ class Vesta extends Module
 
             $this->view->set(
                 'stats',
-                isset($response[$service_fields->username]) ? $response[$service_fields->username] : null
+                $response[$service_fields->username] ?? null
             );
             $this->view->set('service_fields', $service_fields);
 

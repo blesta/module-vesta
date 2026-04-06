@@ -1,5 +1,5 @@
 {
-    "version": "1.9.1",
+    "version": "2.0.0",
     "name": "Vesta.name",
     "description": "Vesta.description",
     "authors": [
@@ -21,8 +21,18 @@
         "group": "Vesta.module_group"
     },
     "email_tags": {
-        "module": ["host_name", "port"],
-        "package": ["package_name"],
-        "service": ["username", "password", "domain"]
-    }
+        "module": [
+            "host_name",
+            "port"
+        ],
+        "package": [
+            "package_name"
+        ],
+        "service": [
+            "username",
+            "password",
+            "domain"
+        ]
+    },
+    "icon": "bi-server"
 }

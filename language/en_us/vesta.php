@@ -12,6 +12,7 @@ $lang['Vesta.tab_stats'] = "Statistics";
 $lang['Vesta.tab_client_actions'] = "Actions";
 $lang['Vesta.submit'] = "Submit";
 
+$lang['Vesta.back_to_manage'] = 'Back';
 
 $lang['Vesta.tab_stats.info.WEB_DOMAINS'] = "Domains";
 $lang['Vesta.tab_stats.info.WEB_ALIASES'] = "Aliases";
@@ -31,6 +32,8 @@ $lang['Vesta.add_module_row'] = "Add Server";
 $lang['Vesta.add_module_group'] = "Add Server Group";
 $lang['Vesta.manage.module_rows_title'] = "Servers";
 $lang['Vesta.manage.module_groups_title'] = "Server Groups";
+$lang['Vesta.manage.tab_rows'] = 'Servers';
+$lang['Vesta.manage.tab_groups'] = 'Server Groups';
 $lang['Vesta.manage.module_rows_heading.name'] = "Server Label";
 $lang['Vesta.manage.module_rows_heading.hostname'] = "Hostname";
 $lang['Vesta.manage.module_rows_heading.port'] = "Port";
