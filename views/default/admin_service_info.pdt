@@ -29,17 +29,17 @@
                 $this->Form->create(
                     $this->Html->safe(
                         $http .
-                            (isset($module_row->meta->host_name) ? $module_row->meta->host_name : null) .
+                            ($module_row->meta->host_name ?? null) .
                             ':' .
-                            (isset($module_row->meta->port) ? $module_row->meta->port : null) .
+                            ($module_row->meta->port ?? null) .
                             '/login/',
                     ),
                     ['target' => '_blank'],
                 );
-                $this->Form->fieldHidden('user', isset($service_fields->username) ? $service_fields->username : null);
+                $this->Form->fieldHidden('user', $service_fields->username ?? null);
                 $this->Form->fieldHidden(
                     'password',
-                    isset($service_fields->password) ? $service_fields->password : null,
+                    $service_fields->password ?? null,
                 );
                 ?>
                 <a id="_login<?php echo isset($service->id)
