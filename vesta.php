@@ -665,7 +665,7 @@ class Vesta extends Module
             $account_response = $vesta->createUserAccount($params);
             $this->log(
                 $row->meta->host_name . '|v-add-user',
-                safe_serialize($account_response),
+                serialize($account_response),
                 'input',
                 $account_response['status']
             );
@@ -682,7 +682,7 @@ class Vesta extends Module
                 $domain_response = $vesta->addDomain($params['username'], $params['domain']);
                 $this->log(
                     $row->meta->host_name . '|v-add-domain',
-                    safe_serialize($domain_response),
+                    serialize($domain_response),
                     'input',
                     $domain_response['status']
                 );
@@ -702,7 +702,7 @@ class Vesta extends Module
                     $ssh_response = $vesta->sshAccess($params['username'], 'enable');
                     $this->log(
                         $row->meta->host_name . '|v-change-user-shell',
-                        safe_serialize($ssh_response),
+                        serialize($ssh_response),
                         'input',
                         $ssh_response['status']
                     );
@@ -802,7 +802,7 @@ class Vesta extends Module
 
                 $this->log(
                     $row->meta->host_name . '|v-change-user-password',
-                    safe_serialize($response),
+                    serialize($response),
                     'input',
                     $response['status']
                 );
@@ -838,7 +838,7 @@ class Vesta extends Module
                 );
                 $this->log(
                     $row->meta->host_name . '|v-change-user-shell',
-                    safe_serialize($ssh_response),
+                    serialize($ssh_response),
                     'input',
                     $ssh_response['status']
                 );
@@ -907,7 +907,7 @@ class Vesta extends Module
 
             $response = $vesta->suspendUserAccount($service_fields->username);
 
-            $this->log($row->meta->host_name . '|v-suspend-user', safe_serialize($response), 'input', $response['status']);
+            $this->log($row->meta->host_name . '|v-suspend-user', serialize($response), 'input', $response['status']);
 
             // if fails then set an error
             if ($response['status'] == 'false') {
@@ -954,7 +954,7 @@ class Vesta extends Module
 
             $response = $vesta->unSuspendUserAccount($service_fields->username);
 
-            $this->log($row->meta->host_name . '|v-unsuspend-user', safe_serialize($response), 'input', $response['status']);
+            $this->log($row->meta->host_name . '|v-unsuspend-user', serialize($response), 'input', $response['status']);
 
             // if fails then set an error
             if ($response['status'] == 'false') {
@@ -1006,7 +1006,7 @@ class Vesta extends Module
 
             $response = $vesta->deleteUserAccount($service_fields->username);
 
-            $this->log($row->meta->host_name . '|v-delete-user', safe_serialize($response), 'input', $response['status']);
+            $this->log($row->meta->host_name . '|v-delete-user', serialize($response), 'input', $response['status']);
 
             // if fails then set an error
             if ($response['status'] == 'false') {
@@ -1061,7 +1061,7 @@ class Vesta extends Module
 
             $this->log(
                 $row->meta->host_name . '|v-change-user-package',
-                safe_serialize($response),
+                serialize($response),
                 'input',
                 $response['status']
             );
@@ -1207,7 +1207,7 @@ class Vesta extends Module
 
         $response = $vesta->getAccountsUsage($service_fields->username);
 
-        $this->log($row->meta->host_name . '|v-list-user', safe_serialize($response), 'input', $response['status']);
+        $this->log($row->meta->host_name . '|v-list-user', serialize($response), 'input', $response['status']);
 
 
         $this->view->set(
@@ -1251,7 +1251,7 @@ class Vesta extends Module
         $response = $vesta->getAccountsUsage($service_fields->username);
 
         if ($response) {
-            $this->log($row->meta->host_name . '|v-list-user', safe_serialize($response), 'output', true);
+            $this->log($row->meta->host_name . '|v-list-user', serialize($response), 'output', true);
 
 
             $this->view->set(
@@ -1264,7 +1264,7 @@ class Vesta extends Module
             return $this->view->fetch();
         }
 
-        $this->log($row->meta->host_name . '|v-list-user', safe_serialize($response), 'output', false);
+        $this->log($row->meta->host_name . '|v-list-user', serialize($response), 'output', false);
     }
 
     /**
