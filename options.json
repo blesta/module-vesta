@@ -1,0 +1,126 @@
+{
+    "id": 1,
+    "name": "Vesta Configurable Options",
+    "description": "Configurable options for Vesta hosting account provisioning",
+    "hidden": 0,
+    "hide_options": 0,
+    "options": [
+        {
+            "id": 1,
+            "label": "SSH Access",
+            "name": "ssh_access",
+            "description": "Enable or disable SSH access for the hosting account",
+            "type": "checkbox",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 1,
+                    "name": "Enable",
+                    "value": "enable",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 1,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 2,
+                            "term": 2,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 3,
+                            "term": 3,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 4,
+                            "term": 6,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 5,
+                            "term": 12,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 6,
+                            "term": 1,
+                            "period": "year",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 7,
+                            "term": 2,
+                            "period": "year",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        },
+                        {
+                            "id": 8,
+                            "term": 3,
+                            "period": "year",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "condition_sets": []
+}
